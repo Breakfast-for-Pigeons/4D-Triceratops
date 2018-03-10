@@ -4,7 +4,7 @@
 ########################################################################
 # Description:                                                         #
 # This program hacks a toy dinosaur. A button is pressed to make the   #
-# dinosaur move and roar.                                              #
+# dinosaur move and grunt.                                              #
 # This program is also a demonstration of controlling a motor using    #
 # the gpiozero module.                                                 #
 # This program is also an example of adding color to text displayed to #
@@ -32,7 +32,7 @@ import os, sys
 
 triceratops_motor = Motor(16, 13, True)
 triceratops_motor_enable = OutputDevice(6)
-red_button = Button(2) 
+red_button = Button(9) 
 green_button = Button(12) 
 
 ########################################################################
@@ -262,6 +262,7 @@ def access_file_check():
 		print("\033[1;37;40mExiting program.\n")
 		release_gpio_pins()
 		exit()
+
 '''
 The read_file function will read the dinosaur facts file and each 
 line of the file will be an element in the fun_facts list. It will then
@@ -308,69 +309,74 @@ def print_header():
                                                       
 
 '''
-The get_roar function will randomly select one of the T. rex roar
+The get_grunt function will randomly select one of the Triceratops grunt
 files and return it and its file length to the main function.
 '''
+def get_grunt():
+	
+	grunt1 = "Sounds/triceratops1.mp3"
+	grunt2 = "Sounds/triceratops2.mp3"
+	grunt3 = "Sounds/triceratops3.mp3"
+	grunt4 = "Sounds/triceratops4.mp3"
+	grunt5 = "Sounds/triceratops5.mp3"
+	grunt6 = "Sounds/triceratops6.mp3"
+	grunt7 = "Sounds/triceratops7.mp3"
+	grunt8 = "Sounds/triceratops8.mp3"
 
-def get_roar():
+	grunt1_length = 5      # lenth of file in seconds
+	grunt2_length = 4      # lenth of file in seconds
+	grunt3_length = 4      # lenth of file in seconds
+	grunt4_length = 4      # lenth of file in seconds
+	grunt5_length = 5      # lenth of file in seconds
+	grunt6_length = 3      # lenth of file in seconds
+	grunt7_length = 2      # lenth of file in seconds
+	grunt8_length = 3      # lenth of file in seconds
 	
-	roar1 = "Sounds/triceratops1.mp3"
-	roar2 = "Sounds/triceratops2.mp3"
-	roar3 = "Sounds/triceratops3.mp3"
-	roar4 = "Sounds/triceratops4.mp3"
-	roar5 = "Sounds/triceratops5.mp3"
-	roar6 = "Sounds/triceratops6.mp3"
-	roar7 = "Sounds/triceratops7.mp3"
-	roar8 = "Sounds/triceratops8.mp3"
-
-	roar1_length = 5      # lenth of file in seconds
-	roar2_length = 4      # lenth of file in seconds
-	roar3_length = 4      # lenth of file in seconds
-	roar4_length = 4      # lenth of file in seconds
-	roar5_length = 5      # lenth of file in seconds
-	roar6_length = 3      # lenth of file in seconds
-	roar7_length = 2      # lenth of file in seconds
-	roar8_length = 3      # lenth of file in seconds
+	grunts = [grunt1, grunt2, grunt3, grunt4, grunt5, grunt6, grunt7, grunt8]
 	
-	roars = [roar1, roar2, roar3, roar4, roar5, roar6, roar7, roar8]
+	grunt = random.choice(grunts)   # Selects random sound file
 	
-	roar = random.choice(roars)   # Selects random sound file
-	
-	if roar == roar1:
-		return roar, roar1_length
-	elif roar == roar2:
-		return roar, roar2_length
-	elif roar == roar3:
-		return roar, roar3_length
-	if roar == roar4:
-		return roar, roar4_length
-	elif roar == roar5:
-		return roar, roar5_length
-	elif roar == roar6:
-		return roar, roar6_length
-	elif roar == roar7:
-		return roar, roar7_length
+	if grunt == grunt1:
+		return grunt, grunt1_length
+	elif grunt == grunt2:
+		return grunt, grunt2_length
+	elif grunt == grunt3:
+		return grunt, grunt3_length
+	if grunt == grunt4:
+		return grunt, grunt4_length
+	elif grunt == grunt5:
+		return grunt, grunt5_length
+	elif grunt == grunt6:
+		return grunt, grunt6_length
+	elif grunt == grunt7:
+		return grunt, grunt7_length
 	else:
-		return roar, roar8_length
+		return grunt, grunt8_length
 
 '''
-The activate_triceratops funciton takes 2 inputs: roar and roar_length. 
+The activate_triceratops funciton takes 2 inputs: grunt and grunt_length. 
 This function will play the sound file and then activate the motor for 
 the duration of the sound file. 
 '''
-
-def activate_triceratops(roar, roar_length):
+def activate_triceratops(grunt, grunt_length):
 	try:
 		triceratops_motor.value = 0.6      # Controls the motor speed
 	except ValueError:
 		print("\033[1;31;40mBad value specified for triceratops_motor. Enter a value between 0 and 1.\n")
 		release_gpio_pins()
 		exit()
-	pygame.mixer.music.load(roar)     # Loads the sound file
-	triceratops_motor_enable.on()     # Starts the motor
-	pygame.mixer.music.play()         # Plays the sound file
-	sleep(roar_length)                # Length of sound file in seconds
-	triceratops_motor_enable.off()    # Stops the motor
+	pygame.mixer.music.load(grunt)     # Loads the sound file
+	triceratops_motor_enable.on()      # Starts the motor
+	pygame.mixer.music.play()          # Plays the sound file
+	sleep(grunt_length)                # Length of sound file in seconds
+	triceratops_motor_enable.off()     # Stops the motor
+
+'''
+This function prompts a user to push a button.
+'''
+def prompt_user_for_input():
+	print("\033[1;37;40mPush the \033[1;32;40mgreen button\033[1;37;40m to activate the \033[1;32;40mTriceratops\033[1;37;40m.")
+	print("\033[1;37;40mPush the \033[1;31;40mred button \033[1;37;40mor press Ctrl-C to \033[1;31;40mstop \033[1;37;40mthe program.\n")
 
 '''
 This function realeases the gpio pins.
@@ -385,7 +391,6 @@ This is the main fucntion. It will wait until one of two buttons is
 pressed. One button will start the program and the other button will
 stop the program. Pressing Ctrl-C will also stop the program.
 '''
-
 def main():
 	try:
 		# Check to see that the necessary files exist
@@ -401,10 +406,9 @@ def main():
 		# Display program header
 		print_header()
 		# Pre-load the first sound file
-		roar, roar_length = get_roar()
+		grunt, grunt_length = get_grunt()
 		# Prompt the user to press a button
-		print("\n\033[1;37;40mPush the \033[1;32;40mgreen button\033[1;37;40m to activate the \033[1;32;40mTriceratops\033[1;37;40m.")
-		print("\033[1;37;40mPush the \033[1;31;40mred button \033[1;37;40mor press Ctrl-C to \033[1;31;40mstop \033[1;37;40mthe program.\n")
+		prompt_user_for_input()
 		
 		while True:
 			
@@ -413,21 +417,20 @@ def main():
 				print("\033[1;34;40mDINOSAUR FUN FACT:")
 				print(random.choice(dino_facts))
 				# Move the T. rex for the duration of the sound file
-				activate_triceratops(roar, roar_length)
-				# Prompt the user again to press a button
-				print("\033[1;37;40mPush the \033[1;32;40mgreen button\033[1;37;40m to activate the \033[1;32;40mTriceratops\033[1;37;40m.")
-				print("\033[1;37;40mPush the \033[1;31;40mred button \033[1;37;40mor press Ctrl-C to \033[1;31;40mstop \033[1;37;40mthe program.\n")
+				activate_triceratops(grunt, grunt_length)
+				# Prompt the user to press a button
+				prompt_user_for_input()
 				# Load the next sound file
-				roar, roar_length = get_roar()
+				grunt, grunt_length = get_grunt()
 				
 			if red_button.is_pressed:
-				print("\nExiting program.\n")
+				print("Exiting program.\n")
 				release_gpio_pins()
 				exit()
 				
 	except KeyboardInterrupt:
 		release_gpio_pins()
-		print("\nExiting program.\n")
+		print("Exiting program.\n")
 		
 if __name__ == '__main__':
 	main()
