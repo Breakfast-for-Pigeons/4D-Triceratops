@@ -156,9 +156,9 @@ def file_check():
 		exit()
 
 '''
-This function checks to see if the user has permission to read the
-necessary files. If so, the program will continue. If not, messages are
-printed out and the program will exit.
+The access_file_check function checks to see if the user has permission
+to read the necessary files. If so, the program will continue. If not, 
+messages are printed out to the screen and the program will exit.
 '''
 def access_file_check():
 	
@@ -282,7 +282,9 @@ def read_file(file_name):
 	return dino_facts
 	
 '''
-This function checks to see if the file is empty.
+This empty_file_check function checks to see if the file is empty. If it
+is, the program will print a message to the screen. If not, the program
+will continue.
 '''
 def empty_file_check(file_name):		
 	print("\033[1;37;40mIs the dinosaur_facts.txt file empty?...", end="")
@@ -295,7 +297,8 @@ def empty_file_check(file_name):
 		print("\033[1;32;40mNo\033[1;37;40m!")
 		
 '''
-This function will print out the program header to the screen.
+The print_header function will print out the program header to the 
+screen.
 '''
 def print_header():
 	print("\033[1;32;40m======================================================================")
@@ -305,12 +308,12 @@ def print_header():
 	print("\033[1;32;40m  |__   _| |_| |   | || |  | | (_|  __/ | | (_| | || (_) | |_) \__ \  ")
 	print("\033[1;32;40m     |_| |____/    |_||_|  |_|\___\___|_|  \__,_|\__\___/| .__/|___/  ")
 	print("\033[1;32;40m                                                         |_|          ")
-	print("\033[1;32;40m======================================================================")
-                                                      
+	print("\033[1;32;40m======================================================================\n")                                                      
 
 '''
-The get_grunt function will randomly select one of the Triceratops grunt
-files and return it and its file length to the main function.
+The get_grunt function will randomly select one of the Triceratops 
+grunt sound files and return it and its file length to the main 
+function.
 '''
 def get_grunt():
 	
@@ -372,20 +375,21 @@ def activate_triceratops(grunt, grunt_length):
 	triceratops_motor_enable.off()     # Stops the motor
 
 '''
-This function prompts a user to push a button.
+The prompt_user_for_input function prompts a user to push a button.
 '''
 def prompt_user_for_input():
 	print("\033[1;37;40mPush the \033[1;32;40mgreen button\033[1;37;40m to activate the \033[1;32;40mTriceratops\033[1;37;40m.")
 	print("\033[1;37;40mPush the \033[1;31;40mred button \033[1;37;40mor press Ctrl-C to \033[1;31;40mstop \033[1;37;40mthe program.\n")
 
 '''
-This function realeases the gpio pins.
+The release_gpio_pins function realeases the gpio pins.
 '''
 def release_gpio_pins():
 	triceratops_motor.close()
 	triceratops_motor_enable.close()
 	red_button.close()
 	green_button.close()
+
 '''
 This is the main fucntion. It will wait until one of two buttons is 
 pressed. One button will start the program and the other button will
