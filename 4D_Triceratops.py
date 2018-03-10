@@ -32,8 +32,8 @@ import os, sys
 
 triceratops_motor = Motor(16, 13, True)
 triceratops_motor_enable = OutputDevice(6)
+green_button = Button(12)
 red_button = Button(9) 
-green_button = Button(12) 
 
 ########################################################################
 #                           Initialize                                 #
