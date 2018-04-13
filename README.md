@@ -28,10 +28,10 @@ ____________________________________
 
 1) Connect the Rasberry Pi, T. rex motor, and electronics as shown in the image below. If you installed the Fritzing application, I included my 4D_Triceratops.fzz file. Feel free to use it. NOTE: The image shows only 2 AA batteries. I actually used 4 AA batteries for this project.
 
-![4d_triceratops](https://user-images.githubusercontent.com/13591438/37245267-2d4cc3c2-245b-11e8-8b49-5109dfbf4dc7.png)
+![4d_triceratops](https://user-images.githubusercontent.com/13591438/38752705-d30f5ba4-3f21-11e8-98ae-b4a2adb4768c.png)
 
 2) Download the Zip file or clone this project with git.
 
 3) Type "sudo ./4D_Triceratops.py"
 
-![4d_triceratops_program](https://user-images.githubusercontent.com/13591438/27269193-5eb32566-547a-11e7-90ee-321f5d318505.png)
+![4d_triceratops_program](https://user-images.githubusercontent.com/13591438/38752716-dcad4568-3f21-11e8-86c1-e0d850e1cdab.png)
