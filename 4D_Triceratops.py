@@ -30,10 +30,10 @@ import os, sys, logging
 #                           Variables                                  #
 ########################################################################
 
-triceratops_motor = Motor(19, 13, True)		# forward, backward, pwm
+triceratops_motor = Motor(19, 13, True)			# forward, backward, pwm
 triceratops_motor_enable = OutputDevice(6)
 green_button = Button(26)
-red_button = Button(9) 
+red_button = Button(9)
 
 ########################################################################
 #                           Initialize                                 #
@@ -100,6 +100,9 @@ def file_check():
 	
 	file_missing_flag = 0
 	
+	sounds = ['Triceratops1.ogg', 'Triceratops2.ogg', 'Triceratops3.ogg', 'Triceratops4.ogg',
+			  'Triceratops5.ogg', 'Triceratops6.ogg', 'Triceratops7.ogg', 'Triceratops8.ogg']
+	
 	logging.info("FILE CHECK")
 	# Check to see if dinosaur_facts.txt file exists
 	if os.path.isfile('Files/dinosaur_facts.txt'):
@@ -107,61 +110,21 @@ def file_check():
 	else:
 		detail_log.error("dinosaur_facts.txt file was not found! Make sure that the dinosaur_facts.txt file exists in the Files folder.")
 		file_missing_flag = 1
-	# Check to see if triceratops1.mp3 file exists
-	if os.path.isfile('Sounds/triceratops1.mp3'):
-		logging.info("triceratops1.mp3 file was found!")
-	else:
-		logging.error("triceratops1.mp3 file was not found! Make sure that the triceratops1.mp3 file exists in the 'Sounds' folder.")
-		file_missing_flag = 1
-	# Check to see if triceratops2.mp3 file exists
-	if os.path.isfile('Sounds/triceratops2.mp3'):
-		logging.info("triceratops2.mp3 file was found!")
-	else:
-		logging.error("triceratops2.mp3 file was not found! Make sure that the triceratops2.mp3 file exists in the 'Sounds' folder.")
-		file_missing_flag = 1
-	# Check to see if triceratops3.mp3 file exists
-	if os.path.isfile('Sounds/triceratops3.mp3'):
-		logging.info("triceratops3.mp3 file was found!")
-	else:
-		logging.error("triceratops3.mp3 file was not found! Make sure that the triceratops3.mp3 file exists in the 'Sounds' folder.")
-		file_missing_flag = 1
-	# Check to see if triceratops4.mp3 file exists
-	if os.path.isfile('Sounds/triceratops4.mp3'):
-		logging.info("triceratops1.mp3 file was found!")
-	else:
-		logging.error("triceratops4.mp3 file was not found! Make sure that the triceratops4.mp3 file exists in the 'Sounds' folder.")
-		file_missing_flag = 1
-	# Check to see if triceratops5.mp3 file exists
-	if os.path.isfile('Sounds/triceratops5.mp3'):
-		logging.info("triceratops5.mp3 file was found!")
-	else:
-		logging.error("triceratops5.mp3 file was not found! Make sure that the triceratops5.mp3 file exists in the 'Sounds' folder.")
-		file_missing_flag = 1
-	# Check to see if triceratops6.mp3 file exists
-	if os.path.isfile('Sounds/triceratops6.mp3'):
-		logging.info("triceratops1.mp3 file was found!")
-	else:
-		logging.error("triceratops6.mp3 file was not found! Make sure that the triceratops6.mp3 file exists in the 'Sounds' folder.")
-		file_missing_flag = 1
-	# Check to see if triceratops7.mp3 file exists
-	if os.path.isfile('Sounds/triceratops7.mp3'):
-		logging.info("triceratops7.mp3 file was found!")
-	else:
-		logging.error("triceratops7.mp3 file was not found! Make sure that the triceratops7.mp3 file exists in the 'Sounds' folder.")
-		file_missing_flag = 1
-	# Check to see if triceratops8.mp3 file exists
-	if os.path.isfile('Sounds/triceratops8.mp3'):
-		logging.info("triceratops8.mp3 file was found!")
-	else:
-		logging.error("triceratops8.mp3 file was not found! Make sure that the triceratops8.mp3 file exists in the 'Sounds' folder.")
-		file_missing_flag = 1
+	
+	# Check to see if sound files exists
+	for sound in sounds:
+		if os.path.isfile('Sounds/' + sound):
+			logging.info("{} file was found!".format(sound))
+		else:
+			logging.error("{} file was not found! Make sure that the {} file exists in the 'Sounds' folder.".format(sound, sound))
+			file_missing_flag = 1
 	
 	# If there are no missing files, return to the main function
 	# Otherwise exit the program
 	if file_missing_flag == 0: 
 		return
 	else:
-		print("\033[1;31;40mErrors were encountered. Check the log in the 'Files' folder for more details.\033[1;31;40m")
+		print("\033[1;31;40mErrors were encountered. Check the log in the 'Files' folder for more information.")
 		stop_the_program()
 
 '''
@@ -173,6 +136,9 @@ def permission_check():
 	
 	permission_flag = 0
 	
+	sounds = ['Triceratops1.ogg', 'Triceratops2.ogg', 'Triceratops3.ogg', 'Triceratops4.ogg',
+			  'Triceratops5.ogg', 'Triceratops6.ogg', 'Triceratops7.ogg', 'Triceratops8.ogg']
+	
 	logging.info("PERMISSION CHECK")
 	# Check to see if user has read access to dinosaur_facts.txt
 	if os.access('Files/dinosaur_facts.txt', os.R_OK):
@@ -180,59 +146,19 @@ def permission_check():
 	else:
 		logging.error("User does not have permission to read the dinosaur_facts.txt file.")
 		permission_flag = 1
-	# Check to see if user has read access to triceratops1.mp3
-	if os.access('Sounds/triceratops1.mp3', os.R_OK):
-		logging.info("User has permission to read the triceratops1.mp3 file.")
-	else:
-		logging.error("User does not have permission to read the triceratops1.mp3 file.")
-		permission_flag = 1
-	# Check to see if user has read access to triceratops2.mp3
-	if os.access('Sounds/triceratops2.mp3', os.R_OK):
-		logging.info("User has permission to read the triceratops2.mp3 file.")
-	else:
-		logging.error("User does not have permission to read the triceratops2.mp3 file.")
-		permission_flag = 1
-	# Check to see if user has read access to triceratops3.mp3
-	if os.access('Sounds/triceratops3.mp3', os.R_OK):
-		logging.info("User has permission to read the triceratops3.mp3 file.")
-	else:
-		logging.error("User does not have permission to read the triceratops3.mp3 file.")
-		permission_flag = 1
-	# Check to see if user has read access to triceratops4.mp3
-	if os.access('Sounds/triceratops4.mp3', os.R_OK):
-		logging.info("User has permission to read the triceratops4.mp3 file.")
-	else:
-		logging.error("User does not have permission to read the triceratops4.mp3 file.")
-		permission_flag = 1
-	# Check to see if user has read access to triceratops5.mp3
-	if os.access('Sounds/triceratops5.mp3', os.R_OK):
-		logging.info("User has permission to read the triceratops5.mp3 file.")
-	else:
-		logging.error("User does not have permission to read the triceratops5.mp3 file.")
-		permission_flag = 1
-	# Check to see if user has read access to triceratops6.mp3
-	if os.access('Sounds/triceratops6.mp3', os.R_OK):
-		logging.info("User has permission to read the triceratops6.mp3 file.")
-	else:
-		logging.error("User does not have permission to read the triceratops6.mp3 file.")
-		permission_flag = 1
-	# Check to see if user has read access to triceratops7.mp3
-	if os.access('Sounds/triceratops7.mp3', os.R_OK):
-		logging.info("User has permission to read the triceratops7.mp3 file.")
-	else:
-		logging.error("User does not have permission to read the triceratops7.mp3 file.")
-		permission_flag = 1
-	# Check to see if user has read access to triceratops8.mp3
-	if os.access('Sounds/triceratops8.mp3', os.R_OK):
-		logging.info("User has permission to read the triceratops8.mp3 file.")
-	else:
-		logging.error("User does not have permission to read the triceratops8.mp3 file.")
-		permission_flag = 1
+	
+	# Check to see if user has read access to sound files
+	for sound in sounds:
+		if os.access('Sounds/' + sound, os.R_OK):
+			logging.info("User has permission to read the {} file.".format(sound))
+		else:
+			logging.error("User does not have permission to read the {} file.".format(sound))
+			permission_flag = 1
 	
 	if permission_flag == 0:  
 		return
 	else:
-		print("\033[1;31;40mErrors were encountered. Check the log in the 'Files' folder for more details.\033[1;31;40m")
+		print("\033[1;31;40mErrors were encountered. Check the log in the 'Files' folder for more information.")
 		stop_the_program()
 
 '''
@@ -260,7 +186,7 @@ def empty_file_check(file_name):
 	logging.info("EMPTY FILE CHECK")
 	if file_name == []:
 		logging.error("The dinosaur.txt file is empty. The program won't work.")
-		print("\033[1;31;40mErrors were encountered. Check the log in the 'Files' folder for more details.\033[1;31;40m")
+		print("\033[1;31;40mErrors were encountered. Check the log in the 'Files' folder for more information.")
 		stop_the_program()
 	else:
 		logging.info("The dinosaur.txt file is not empty.(This is good. We don't want an empty file.)")
@@ -288,45 +214,13 @@ function.
 '''
 def get_grunt():
 	
-	grunt1 = "Sounds/triceratops1.mp3"
-	grunt2 = "Sounds/triceratops2.mp3"
-	grunt3 = "Sounds/triceratops3.mp3"
-	grunt4 = "Sounds/triceratops4.mp3"
-	grunt5 = "Sounds/triceratops5.mp3"
-	grunt6 = "Sounds/triceratops6.mp3"
-	grunt7 = "Sounds/triceratops7.mp3"
-	grunt8 = "Sounds/triceratops8.mp3"
-
-	grunt1_length = 5      # lenth of file in seconds
-	grunt2_length = 4      # lenth of file in seconds
-	grunt3_length = 4      # lenth of file in seconds
-	grunt4_length = 4      # lenth of file in seconds
-	grunt5_length = 5      # lenth of file in seconds
-	grunt6_length = 3      # lenth of file in seconds
-	grunt7_length = 2      # lenth of file in seconds
-	grunt8_length = 3      # lenth of file in seconds
+	# The Key : Value pair is sound file name : length of file in seconds
+	grunts = {'Sounds/Triceratops1.ogg' : 5 , 'Sounds/Triceratops2.ogg' : 4 , 'Sounds/Triceratops3.ogg' : 4 , 
+			  'Sounds/Triceratops4.ogg' : 4 , 'Sounds/Triceratops5.ogg' : 5 , 'Sounds/Triceratops6.ogg' : 3 ,
+			  'Sounds/Triceratops7.ogg' : 2 , 'Sounds/Triceratops8.ogg' : 3 }
 	
-	grunts = [grunt1, grunt2, grunt3, grunt4, grunt5, grunt6, grunt7, grunt8]
+	return random.choice(list(grunts.items()))
 	
-	grunt = random.choice(grunts)   # Selects random sound file
-	
-	if grunt == grunt1:
-		return grunt, grunt1_length
-	elif grunt == grunt2:
-		return grunt, grunt2_length
-	elif grunt == grunt3:
-		return grunt, grunt3_length
-	if grunt == grunt4:
-		return grunt, grunt4_length
-	elif grunt == grunt5:
-		return grunt, grunt5_length
-	elif grunt == grunt6:
-		return grunt, grunt6_length
-	elif grunt == grunt7:
-		return grunt, grunt7_length
-	else:
-		return grunt, grunt8_length
-
 '''
 The activate_triceratops funciton takes 2 inputs: grunt and grunt_length. 
 This function will play the sound file and then activate the motor for 
@@ -337,7 +231,7 @@ def activate_triceratops(grunt, grunt_length):
 		triceratops_motor.value = 0.6       # Controls the motor speed
 	except ValueError:
 		logging.error("A bad value was specified for triceratops_motor. The value should be between 0 and 1.")
-		print("\033[1;31;40mAn error was encountered. Check the detail log for more information\n")
+		print("\033[1;31;40mAn error was encountered. Check the log in the 'Files' folder for more information.\n")
 		stop_the_program()
 	pygame.mixer.music.load(grunt)     		# Loads the sound file
 	triceratops_motor_enable.on()      		# Starts the motor
