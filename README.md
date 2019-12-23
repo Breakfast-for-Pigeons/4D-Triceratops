@@ -1,7 +1,7 @@
 # 4D Triceratops
 Use Python and a Raspberry Pi to control an Innonex 4D Triceratops.
 
-[![Click for 4D Triceratops video](https://user-images.githubusercontent.com/13591438/27349413-b6ea1742-55bc-11e7-9ab5-5c183b34e8ab.JPG)](https://www.dropbox.com/s/b7gepwxhe4x90k7/4D_Triceratops.AVI?dl=0)
+[![Click for 4D Triceratops video](https://user-images.githubusercontent.com/13591438/27349413-b6ea1742-55bc-11e7-9ab5-5c183b34e8ab.JPG)](https://mega.nz/#!vTA0QACJ!Et7pad056sZm7QRO-wWmpdtdpaDiNOdvLF3XtYgN414)
 
 ## Requirements:
   Innonex 4D Science Triceratops from Amazing Toys Ltd.
